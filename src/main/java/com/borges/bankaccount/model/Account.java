@@ -19,4 +19,6 @@ public class Account {
 
     private BigDecimal balance;
     private AccountStatus status;
+
+
 }
