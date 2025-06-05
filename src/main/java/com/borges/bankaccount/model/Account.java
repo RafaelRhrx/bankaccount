@@ -20,5 +20,19 @@ public class Account {
     private BigDecimal balance;
     private AccountStatus status;
 
+    public void setAgency(String agency) {
+        this.agency = agency;
+    }
 
+    public void setStatus(AccountStatus status) {
+        this.status = status;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
