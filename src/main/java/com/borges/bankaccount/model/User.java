@@ -3,17 +3,20 @@ package com.borges.bankaccount.model;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class User {
+public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true,nullable = false)
     private String document;
 
+    @Column(nullable = false)
     private String name;
     private String address;
     private String password;
+    private String email;
+
+
 }
