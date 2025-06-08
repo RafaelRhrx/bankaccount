@@ -17,8 +17,16 @@ public class Account {
     @ManyToOne
     private User user;
 
+    @Column(nullable = false)
     private BigDecimal balance;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private AccountStatus status;
+
+    public AccountStatus getStatus() {
+        return status;
+    }
 
     public void setAgency(String agency) {
         this.agency = agency;
@@ -34,5 +42,9 @@ public class Account {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
     }
 }
