@@ -15,7 +15,7 @@ public class Account {
     private String agency;
 
     @ManyToOne
-    private User user;
+    private Customer customer;
 
     @Column(nullable = false)
     private BigDecimal balance;
@@ -40,8 +40,8 @@ public class Account {
         this.balance = balance;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Customer customer) {
+        this.customer = customer;
     }
 
     public BigDecimal getBalance() {

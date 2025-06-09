@@ -3,7 +3,7 @@ package com.borges.bankaccount.model;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private UserType type;
+    private CustomerType type;
 
     public void setName(String name) {
         this.name = name;
@@ -39,7 +39,7 @@ public class User {
         this.password = password;
     }
 
-    public void setType(UserType type) {
+    public void setType(CustomerType type) {
         this.type = type;
     }
 }

@@ -1,6 +1,6 @@
 package com.borges.bankaccount.model;
 
-public enum UserType {
+public enum CustomerType {
     PF,
     PJ
 }

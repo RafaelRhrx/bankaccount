@@ -4,9 +4,9 @@ package com.borges.bankaccount.service;
 import com.borges.bankaccount.dto.AccountDTO;
 import com.borges.bankaccount.model.Account;
 import com.borges.bankaccount.model.AccountStatus;
-import com.borges.bankaccount.model.User;
+import com.borges.bankaccount.model.Customer;
 import com.borges.bankaccount.repository.AccountRepository;
-import com.borges.bankaccount.repository.UserRepository;
+import com.borges.bankaccount.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,15 +15,15 @@ import java.math.BigDecimal;
 public class AccountService {
 
     private final AccountRepository accountRepository;
-    private final UserRepository userRepository;
+    private final CustomerRepository customerRepository;
 
-    public AccountService(AccountRepository accountRepository, UserRepository userRepository) {
+    public AccountService(AccountRepository accountRepository, CustomerRepository customerRepository) {
         this.accountRepository = accountRepository;
-        this.userRepository = userRepository;
+        this.customerRepository = customerRepository;
     }
 
     public Account openAccount(AccountDTO dto) {
-        User user = userRepository.findById(dto.userId())
+        Customer customer = customerRepository.findById(dto.userId())
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 
         if (accountRepository.findByAgency(dto.agency()).isPresent()) {
@@ -34,7 +34,7 @@ public class AccountService {
         account.setAgency(dto.agency());
         account.setStatus(AccountStatus.ACTIVE);
         account.setBalance(BigDecimal.ZERO);
-        account.setUser(user);
+        account.setUser(customer);
 
         return accountRepository.save(account);
     }
