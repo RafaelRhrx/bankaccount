@@ -59,6 +59,34 @@ public class TransactionService {
 
         transactionRepository.save(transaction);
         notificationService.notifyMessage();
+
+    }
+
+    @Transactional
+    public void revertTransaction(Long id) {
+        Transaction transaction = transactionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transferência não encontrada"));
+
+        if  (transaction.isReversal()) {
+            throw new RuntimeException("Transferência já foi revertida");
+        }
+
+        Account sender = transaction.getAccountSender();
+        Account receiver = transaction.getAccountReceiver();
+        BigDecimal value = transaction.getValue();
+
+        if (receiver.getBalance().compareTo(value) < 0) {
+            throw new RuntimeException("Saldo insuficiente na conta de destino para reverter");
+        }
+
+        receiver.setBalance(receiver.getBalance().subtract(value));
+        sender.setBalance(sender.getBalance().add(value));
+
+        accountRepository.save(sender);
+        accountRepository.save(receiver);
+
+        transaction.setReversal(true);
+        transactionRepository.save(transaction);
     }
 
 

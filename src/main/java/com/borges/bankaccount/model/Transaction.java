@@ -42,4 +42,25 @@ public class Transaction {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
+    
+
+    public void setReversal(Boolean reversal) {
+        this.reversal = reversal;
+    }
+
+    public boolean isReversal() {
+        return reversal;
+    }
+
+    public Account getAccountReceiver() {
+        return accountReceiver;
+    }
+
+    public Account getAccountSender() {
+        return accountSender;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
 }
