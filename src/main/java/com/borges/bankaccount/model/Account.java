@@ -1,9 +1,11 @@
 package com.borges.bankaccount.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
+@Getter
 @Entity
 public class Account {
 
@@ -24,10 +26,6 @@ public class Account {
     @Column(nullable = false)
     private AccountStatus status;
 
-    public AccountStatus getStatus() {
-        return status;
-    }
-
     public void setAgency(String agency) {
         this.agency = agency;
     }
@@ -44,7 +42,8 @@ public class Account {
         this.customer = customer;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    public Account() {
+        this.status = AccountStatus.ACTIVE;
     }
+
 }

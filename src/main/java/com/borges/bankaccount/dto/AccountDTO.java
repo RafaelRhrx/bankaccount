@@ -1,5 +1,9 @@
 package com.borges.bankaccount.dto;
 
-public record AccountDTO(Long userId, String agency) {
+import com.borges.bankaccount.model.AccountStatus;
+
+import java.math.BigDecimal;
+
+public record AccountDTO(Long id, String agency, BigDecimal balance, AccountStatus status) {
 
 }

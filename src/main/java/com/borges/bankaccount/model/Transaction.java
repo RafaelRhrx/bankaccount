@@ -1,11 +1,18 @@
 package com.borges.bankaccount.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
+@Table(name="bank_transactions")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Transaction {
 
     @Id
@@ -13,18 +20,20 @@ public class Transaction {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name="account_sender")
     private Account accountSender;
 
     @ManyToOne
+    @JoinColumn(name="account_receiver")
     private Account accountReceiver;
 
-    @Column(nullable = false)
+    @Column(name = "transaction_value")
     private BigDecimal value;
 
-    @Column(nullable = false)
-    private LocalDateTime date;
 
-    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+
     private Boolean reversal = false;
 
     public void setAccountSender(Account accountSender) {
@@ -39,8 +48,8 @@ public class Transaction {
         this.value = value;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
     
 
@@ -52,15 +61,4 @@ public class Transaction {
         return reversal;
     }
 
-    public Account getAccountReceiver() {
-        return accountReceiver;
-    }
-
-    public Account getAccountSender() {
-        return accountSender;
-    }
-
-    public BigDecimal getValue() {
-        return value;
-    }
 }

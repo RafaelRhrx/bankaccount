@@ -23,7 +23,7 @@ public class AccountService {
     }
 
     public Account openAccount(AccountDTO dto) {
-        Customer customer = customerRepository.findById(dto.userId())
+        Customer customer = customerRepository.findById(dto.id())
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 
         if (accountRepository.findByAgency(dto.agency()).isPresent()) {
@@ -32,8 +32,8 @@ public class AccountService {
 
         Account account = new Account();
         account.setAgency(dto.agency());
-        account.setStatus(AccountStatus.ACTIVE);
-        account.setBalance(BigDecimal.ZERO);
+        account.setStatus(dto.status() != null ? dto.status() : AccountStatus.ACTIVE);
+        account.setBalance(dto.balance());
         account.setUser(customer);
 
         return accountRepository.save(account);

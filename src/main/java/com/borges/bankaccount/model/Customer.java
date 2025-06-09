@@ -42,4 +42,28 @@ public class Customer {
     public void setType(CustomerType type) {
         this.type = type;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public CustomerType getType() {
+        return type;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDocument() {
+        return document;
+    }
 }

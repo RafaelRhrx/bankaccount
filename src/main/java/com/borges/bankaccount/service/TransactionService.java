@@ -55,7 +55,7 @@ public class TransactionService {
         transaction.setAccountSender(sender);
         transaction.setAccountReceiver(receiver);
         transaction.setValue(value);
-        transaction.setDate(LocalDateTime.now());
+        transaction.setCreatedAt(LocalDateTime.now());
 
         transactionRepository.save(transaction);
         notificationService.notifyMessage();

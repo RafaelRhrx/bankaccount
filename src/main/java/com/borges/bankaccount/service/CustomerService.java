@@ -22,7 +22,7 @@ public class CustomerService {
         Customer customer = new Customer();
         customer.setName(dto.name());
         customer.setDocument(dto.document());
-        customer.setAddress(dto.adress());
+        customer.setAddress(dto.address());
         customer.setPassword(dto.password());
         customer.setType(dto.type());
 

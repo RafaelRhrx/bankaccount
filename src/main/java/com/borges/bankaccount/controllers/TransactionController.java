@@ -16,14 +16,14 @@ public class TransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> transfer(@RequestBody TransactionDTO dto) {
+    public ResponseEntity<String> transfer(@RequestBody TransactionDTO dto) {
         transactionService.transfer(dto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Transferência feita com sucesso");
     }
 
     @PostMapping("/{id}/reversal")
-    public ResponseEntity<Void> reversal(@PathVariable Long id) {
+    public ResponseEntity<String> reversal(@PathVariable Long id) {
         transactionService.revertTransaction(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Transação revertida com sucesso");
     }
 }
