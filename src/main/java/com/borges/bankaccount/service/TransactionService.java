@@ -3,6 +3,7 @@ package com.borges.bankaccount.service;
 import com.borges.bankaccount.dto.TransactionDTO;
 import com.borges.bankaccount.model.Account;
 import com.borges.bankaccount.model.AccountStatus;
+import com.borges.bankaccount.model.Customer;
 import com.borges.bankaccount.model.Transaction;
 import com.borges.bankaccount.repository.AccountRepository;
 import com.borges.bankaccount.repository.TransactionRepository;
@@ -57,8 +58,10 @@ public class TransactionService {
         transaction.setValue(value);
         transaction.setCreatedAt(LocalDateTime.now());
 
+
+        notificationService.notifyMessage(sender.getCustomer(), "Você transferiu " + value + " para " + receiver.getCustomer().getName());
+        notificationService.notifyMessage(receiver.getCustomer(), "Você recebeu " + value + " de " + sender.getCustomer().getName());
         transactionRepository.save(transaction);
-        notificationService.notifyMessage();
 
     }
 
